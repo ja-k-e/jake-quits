@@ -1,0 +1,134 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #ffbb00;
+}
+
+#app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  line-height: 1.1;
+}
+
+header {
+  padding: 2rem 0;
+  h1 {
+    font-size: 6rem;
+    text-align: center;
+    line-height: 0.9;
+  }
+  p {
+    text-align: center;
+    font-size: 1.4rem;
+    // font-style: italic;
+    margin: 1rem 0 0;
+  }
+}
+a {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.3rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+@media (min-width: 1024px) {
+  header.container {
+    padding: 6rem 0;
+  }
+}
+
+header.container,
+div.container {
+  margin: 0 auto;
+  width: 95%;
+  @media (min-width: 1024px) {
+    width: 960px;
+    h1 {
+      font-size: 8rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+  @media (min-width: 1200px) {
+    width: 1024px;
+  }
+  @media (min-width: 1400px) {
+    // width: 1200px;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin: 2rem -0.5rem;
+  .progress {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin: 0.25rem 0.5rem;
+    width: calc(100% - 1rem);
+    @media (min-width: 375px) {
+      width: calc(50% - 1rem);
+    }
+    &.dark {
+      background: black;
+      color: #ffbb00;
+    }
+  }
+  @media (min-width: 780px) {
+    .progress {
+      margin: 0.5rem;
+      padding: 1rem;
+      width: calc(25% - 1rem);
+    }
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin: 4rem -0.5rem;
+  > div {
+    margin: 0.5rem;
+    width: calc(50% - 1rem);
+  }
+  @media (min-width: 780px) {
+    > div {
+      width: calc(25% - 1rem);
+    }
+  }
+}
