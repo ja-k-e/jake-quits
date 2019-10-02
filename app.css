@@ -98,7 +98,7 @@ div.container {
   margin: 2rem -0.5rem;
 }
 .flex .progress {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   box-sizing: border-box;
   margin: 0.25rem 0.5rem;
   width: calc(100% - 1rem);
@@ -111,12 +111,16 @@ div.container {
 .flex .progress.dark {
   background: black;
   color: #ffbb00;
+  padding: 0.5rem;
 }
 @media (min-width: 780px) {
   .flex .progress {
     margin: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 0;
     width: calc(25% - 1rem);
+  }
+  .flex .progress.dark {
+    padding: 1rem;
   }
 }
 
@@ -125,7 +129,7 @@ div.container {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 4rem -0.5rem;
+  margin: 4rem 0;
 }
 .timeline > div {
   margin: 0.5rem;
