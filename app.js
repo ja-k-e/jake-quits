@@ -13,12 +13,39 @@ const data = {
   time: 1569369600000 // new Date(2019, 8, 24, 19)
 };
 
-const progresses = document.querySelectorAll(".progress[fraction]");
+const progresses = [];
+const radius = 25;
+const circumference = radius * 2 * Math.PI;
+const dom = {
+  dollars: document.getElementById("dollars"),
+  cents: document.getElementById("cents"),
+  progresses: document.querySelectorAll(".progress[fraction]")
+};
 
-update();
+let lastDollars = null;
+let lastCents = null;
+
+init();
+
+function init() {
+  dom.progresses.forEach((progress, i) => {
+    progresses[i] = {
+      dom: {
+        elem: dom.progresses[i],
+        left: dom.progresses[i].querySelector(".left"),
+        digits: dom.progresses[i].querySelector("h2")
+      },
+      fraction: progress.getAttribute("fraction"),
+      offset: null,
+      v: null
+    };
+  });
+
+  update();
+}
 
 function update() {
-  const now = new Date().getTime();
+  const now = Date.now();
   const seconds = (now - data.time) / 1000;
   data.years = seconds / 31556952;
   data.months = seconds / 2592000;
@@ -35,36 +62,43 @@ function update() {
     .toFixed(2)
     .split(".")[1];
   updatePies();
-  document.getElementById("dollars").innerText = data.dollars;
-  document.getElementById("cents").innerText = data.cents;
-
+  if(lastDollars !== data.dollars) {
+    lastDollars = data.dollars;
+    dom.dollars.innerText = data.dollars;
+  }
+  if(lastCents !== data.cents) {
+    lastCents = data.cents;
+    dom.cents.innerText = data.cents;
+  }
   requestAnimationFrame(update);
 }
 
 function updatePies() {
-  const radius = 25;
-  const circumference = radius * 2 * Math.PI;
-  progresses.forEach(progress => {
-    const value = data[progress.getAttribute("fraction")];
+  progresses.forEach((progress, i) => {
+    const value = data[progress.fraction];
     const complete = Math.floor(value);
     let v = complete.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     if (complete < 10) v = value.toFixed(2);
     if (complete < 1) v = value.toFixed(3);
-    progress.querySelector("h2").innerText = v;
     const percent = Math.round((value - complete) * 100 * 10) / 10;
     const offset = circumference - (percent / 100) * circumference;
-    progress.querySelector(
-      ".left"
-    ).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 100 100">
-    <circle class="bg" r="${radius}" cx="50" cy="50" />
-    <circle
-      class="prog"
-      r="${radius}"
-      cx="50"
-      cy="50"
-      stroke-dasharray="${circumference} ${circumference}"
-      stroke-dashoffset="${offset}"
-    />
-  </svg>`;
+    if(v !== progress.v) {
+      progress.v = v;
+      progress.dom.digits.innerText = v;
+    }
+    if(offset !== progress.offset) {
+      progress.offset = offset;
+      progress.dom.left.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 100 100">
+        <circle class="bg" r="${radius}" cx="50" cy="50" />
+        <circle
+          class="prog"
+          r="${radius}"
+          cx="50"
+          cy="50"
+          stroke-dasharray="${circumference} ${circumference}"
+          stroke-dashoffset="${offset}"
+        />
+      </svg>`;
+    }
   });
 }
