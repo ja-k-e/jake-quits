@@ -1,0 +1,24 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.7.5)
+    mustermann (1.0.3)
+    rack (2.0.7)
+    rack-protection (2.0.7)
+      rack
+    sinatra (2.0.7)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.7)
+      tilt (~> 2.0)
+    tilt (2.0.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv (= 2.7.5)
+  sinatra (= 2.0.7)
+
+BUNDLED WITH
+   1.17.3

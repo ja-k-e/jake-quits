@@ -1,18 +1,3 @@
-const data = {
-  years: null,
-  months: null,
-  weeks: null,
-  days: null,
-  hours: null,
-  minutes: null,
-  seconds: null,
-  savings: null,
-  dollars: null,
-  cents: null,
-  dailyCost: 6.375466667,
-  time: 1569369600000 // new Date(2019, 8, 24, 19)
-};
-
 const progresses = document.querySelectorAll(".progress[fraction]");
 
 update();
