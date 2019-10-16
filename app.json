@@ -1,0 +1,39 @@
+{
+  "name": "Jake Quits",
+  "description": "A static site that is a nice big beautiful time keeper for your sobriety.",
+  "website": "https://github.com/jakealbaugh/jake-quits",
+  "repository": "https://github.com/jakealbaugh/jake-quits",
+  "env":
+  {
+    "NAME":
+    {
+      "description": "Your First name",
+      "value": "Jake"
+    },
+    "FULL_NAME":
+    {
+      "description": "Your full name",
+      "value": "Jake Albaugh"
+    },
+    "TWITTER":
+    {
+      "description": "Your Twitter username (without the @)",
+      "value": "jake_albaugh"
+    },
+    "LAST_CIGARETTE":
+    {
+      "description": "Date and time of your last cigarette (YYYY/MM/DD HH:MM)",
+      "value": "2019/8/24 19:00"
+    },
+    "DAILY_COST":
+    {
+      "description": "How much did you spend in cigarette every day",
+      "value": "6.375466667"
+    },
+    "CURRENCY":
+    {
+      "description": "The currency of your country",
+      "value": "$"
+    }
+  }
+}
