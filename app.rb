@@ -1,7 +1,10 @@
 require "sinatra"
-require "dotenv"
 
-Dotenv.load
+if ENV["RACK_ENV"] === "development"
+  require "dotenv"
+
+  Dotenv.load
+end
 
 set :public_folder, Proc.new { File.join(root, "public") }
 
