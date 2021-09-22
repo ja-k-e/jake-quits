@@ -10,7 +10,7 @@ const data = {
   dollars: null,
   cents: null,
   dailyCost: 6.375466667,
-  time: 1569369600000 // new Date(2019, 8, 24, 19)
+  time: 1569369600000, // new Date(2019, 8, 24, 19)
 };
 
 const progresses = document.querySelectorAll(".progress[fraction]");
@@ -44,7 +44,7 @@ function update() {
 function updatePies() {
   const radius = 25;
   const circumference = radius * 2 * Math.PI;
-  progresses.forEach(progress => {
+  progresses.forEach((progress) => {
     const value = data[progress.getAttribute("fraction")];
     const complete = Math.floor(value);
     let v = complete.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -55,7 +55,7 @@ function updatePies() {
     const offset = circumference - (percent / 100) * circumference;
     progress.querySelector(
       ".left"
-    ).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 100 100">
+    ).innerHTML = `<svg aria-hidden="true" role="presentation" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 100 100">
     <circle class="bg" r="${radius}" cx="50" cy="50" />
     <circle
       class="prog"
