@@ -1,8 +1,11 @@
+:root {
+  --color: #FB0;
+}
 html,
 body {
   margin: 0;
   height: 100%;
-  background: #ffbb00;
+  background: var(--color);
 }
 
 #app {
@@ -45,10 +48,10 @@ h1 {
   font-size: 2rem;
 }
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 h3 {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 p {
@@ -83,10 +86,10 @@ div.container {
     font-size: 8rem;
   }
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -110,7 +113,7 @@ div.container {
 }
 .flex .progress.dark {
   background: black;
-  color: #ffbb00;
+  color: var(--color);
   padding: 0.5rem;
 }
 @media (min-width: 780px) {

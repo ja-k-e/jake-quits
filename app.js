@@ -1,3 +1,27 @@
+const params = new URLSearchParams(window.location.search);
+
+function getTime() {
+  const fallback = "2019-09-24T19:00"; // 1569369600000, // new Date(2019, 8, 24, 19)
+  try {
+    const d = Date.parse(params.has("d") ? params.get("d") : fallback);
+    return isNaN(d) ? Date.parse(fallback) : d;
+  } catch (e) {
+    return Date.parse(fallback);
+  }
+}
+
+const dailyCost = params.has("s") ? parseFloat(params.get("s")) : 6.375466667;
+const currency = params.has("c") ? params.get("c") : "$";
+const time = getTime();
+const n = params.has("n") ? params.get("n") : "jake";
+if (n) {
+  document.querySelectorAll(".name").forEach((s) => (s.innerText = n));
+}
+const color = params.has("h") ? params.get("h") : "FB0";
+if (color) {
+  document.body.style.setProperty("--color", `#${color}`);
+}
+
 const data = {
   years: null,
   months: null,
@@ -9,8 +33,6 @@ const data = {
   savings: null,
   dollars: null,
   cents: null,
-  dailyCost: 6.375466667,
-  time: 1569369600000, // new Date(2019, 8, 24, 19)
 };
 
 const progresses = document.querySelectorAll(".progress[fraction]");
@@ -19,15 +41,15 @@ update();
 
 function update() {
   const now = new Date().getTime();
-  const seconds = (now - data.time) / 1000;
+  const seconds = (now - time) / 1000;
   data.years = seconds / 31556952;
-  data.months = seconds / 2592000;
-  data.weeks = seconds / 604800;
   data.days = seconds / 86400;
+  data.months = data.years * 12;
+  data.weeks = data.days / 7;
   data.hours = seconds / 3600;
   data.minutes = seconds / 60;
   data.seconds = seconds;
-  data.savings = data.days * data.dailyCost;
+  data.savings = data.days * dailyCost;
   data.dollars = Math.floor(data.savings)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -35,7 +57,7 @@ function update() {
     .toFixed(2)
     .split(".")[1];
   updatePies();
-  document.getElementById("dollars").innerText = data.dollars;
+  document.getElementById("dollars").innerText = `${currency}${data.dollars}`;
   document.getElementById("cents").innerText = data.cents;
 
   requestAnimationFrame(update);
